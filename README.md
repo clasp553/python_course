@@ -1,1 +1,1 @@
-# Repository for course material and exercises: Advanced scientific programming with Python
+# Advanced scientific programming with Python: repository for coding project 
