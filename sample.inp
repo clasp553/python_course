@@ -1,0 +1,6 @@
+# Geometry optimization Cu-4gly
+! TPSS def2-TZVP def2/J D3BJ TightOpt UseSym freq CPCM(THF) 
+% pal nprocs 8 end
+%maxcore 2000
+
+*xyzfile  -2 2 Cu-4gly.xyz
