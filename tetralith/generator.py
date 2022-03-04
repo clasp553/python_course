@@ -5,6 +5,7 @@ class Generator:
     def __init__(self):
         self.xyzfile = "dummy"
         self.filename = "dummy.inp"
+        self.dir = "target dir"
     
     
     def xyz_reader(self):
@@ -29,11 +30,17 @@ class Generator:
         xyzfile = self.xyz_reader()
         charge = input("Complex charge: ")
         mult = input("Complex multiplicity: ")
+       
         print("\nCreating .inp file...")
         
         #Name of the .inp file
         filename = input("Input file name: ")
         filename = filename + ".inp"
+        
+        #Setting target dir for .inp file
+        self.dir = input("Specify path of destination directory:\nTarget directory = ")
+        target_dir = self.dir.strip('"')
+        full_name = os.path.join(target_dir, filename)
        
         #Give a title to calculation
         title = input("Title of calculation:")
@@ -53,10 +60,12 @@ class Generator:
                  "*xyzfile  " + charge + " "+ mult + " " + xyzfile
                  ]
         
-        with open(filename, "w") as f:
+        with open(full_name, "w") as f:
            f.write("\n".join(lines))
+           
         self.filename = filename
-        return self.filename
+        self.dir = target_dir
+        return self.filename, self.dir
         
     
     def sh_writer(self):
@@ -79,7 +88,7 @@ class Generator:
             out = input("Output file name (Default: same as input file): ")
         except ValueError: #sets default parameters if no input
             out = self.filename
-        out = out.replace(".inp", "")
+            out = out.replace(".inp", "") #TO FIX: with no input the filename becomes empty
         
         lines = ["#!/bin/bash", 
                  "#SBATCH -A snic2021-5-305", 
@@ -98,5 +107,6 @@ class Generator:
                  "exit $orca_status"
                  ]
         
-        with open(self.filename.replace(".inp", "")+".sh", "w") as f:
+        full_name = self.dir + "/" + self.filename.replace(".inp", "")
+        with open(full_name+".sh", "w") as f:
            f.write("\n".join(lines))
