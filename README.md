@@ -10,7 +10,8 @@ The project consists in three main steps:
 	- an .sh file, which is the one that I actually run; it contains a "link" to the .inp file
 	- an .inp file, in which I specify which kind of simulation I want to run; it contains a "link" to the .xyz file
 	- an .xyz file, which is just a list of coordinates representing the geometrical structure of my starting molecule
-The format of the files is always the same, but now I am manually changing the characters providing the "links" between the files for each simulation that I run, a very time consuming process which often leads to typing mistakes etc.
+
+	The format of the files is always the same, but now I am manually changing the characters providing the "links" between the files for each simulation that I run, a very time consuming process which often leads to typing mistakes etc.
 I would like to create a python package that allows me to efficiently create and edit these files.
 		
 2) The ligands in my starting complexes are created manually using aminoacids as building blocks and linking them in different sequences with no particular pattern (in this initial stage of the project)
